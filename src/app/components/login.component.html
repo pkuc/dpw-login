@@ -1,0 +1,36 @@
+
+<h1>Please check in:</h1>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="form" autocomplete="off">
+    <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput type="search" name="firstName" [formControl]="firstNameControl" [matAutocomplete]="autoFn" required autocomplete="off" autocorrect="off" spellcheck="false" autocomplete="off">
+        <mat-autocomplete #autoFn="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="optionClicked(option)">
+            {{ option['First Name'] }} {{ option['Last Name'] }} ({{ option['Email'] }})
+        </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput type="search" name="lastName" [formControl]="lastNameControl" [matAutocomplete]="autoLn" required autocomplete="off" autocorrect="off" spellcheck="false" autocomplete="off">
+        <mat-autocomplete #autoLn="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="optionClicked(option)">
+            {{ option['First Name'] }} {{ option['Last Name'] }} ({{ option['Email'] }})
+        </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="search" name="email" [formControl]="emailControl" [matAutocomplete]="autoEmail" required email autocomplete="off" autocorrect="off" spellcheck="false" autocomplete="off">
+        <mat-autocomplete #autoEmail="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="optionClicked(option)">
+            {{ option['First Name'] }} {{ option['Last Name'] }} ({{ option['Email'] }})
+        </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    
+    <button mat-raised-button type="submit" [disabled]="form.invalid">Submit</button>
+    </form>

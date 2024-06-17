@@ -1,0 +1,29 @@
+runtime: nodejs18
+
+# Optional setting to specify the number of instances
+instance_class: F1
+
+# Optional environment variables
+env_variables:
+  NODE_ENV: 'production'
+
+# Ensure the public directory where Angular builds its files
+handlers:
+- url: /
+  static_files: dist/dpw-login/index.html
+  upload: dist/dpw-login/index.html
+
+- url: /
+  static_dir: dist/dpw-login
+
+- url: /(.*)
+  static_files: dist/dpw-login/\1
+  upload: dist/dpw-login/.*
+
+# Error handlers for HTTP and HTTPS
+error_handlers:
+ - file: static/404.html
+   error_code: over_quota
+
+# Optional: configure static caching if you have static assets
+default_expiration: "1d"
